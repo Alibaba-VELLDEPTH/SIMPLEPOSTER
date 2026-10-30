@@ -29,12 +29,12 @@ The examples below are deliberately difficult: dense multi-line Chinese, long co
 
 | 6 exact lines | 5 exact lines | 4 long lines |
 |:---:|:---:|:---:|
-| ![Fishing net poster](assets/showcase/net.png) | ![Ventilation product poster](assets/showcase/vent.png) | ![Comb rack poster](assets/showcase/comb.png) |
+| ![Fishing net poster](assets/showcase/thumbs/net.jpg) | ![Ventilation product poster](assets/showcase/thumbs/vent.jpg) | ![Comb rack poster](assets/showcase/thumbs/comb.jpg) |
 | Dense repeated Chinese copy | Long top and bottom copy | Long material-description copy |
 
 | Digits + Chinese | English + punctuation | Complex furniture subject |
 |:---:|:---:|:---:|
-| ![Phone case poster](assets/showcase/phonecase.png) | ![Knitwear poster](assets/showcase/knitwear.png) | ![Sofa poster](assets/showcase/sofa.png) |
+| ![Phone case poster](assets/showcase/thumbs/phonecase.jpg) | ![Knitwear poster](assets/showcase/thumbs/knitwear.jpg) | ![Sofa poster](assets/showcase/thumbs/sofa.jpg) |
 | `2024` mixed with Chinese | `OOTD.` and `/` mixed with Chinese | Three exact lines with a detailed scene |
 
 ## Environment
