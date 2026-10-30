@@ -25,7 +25,15 @@ SIMPLEPOSTER is a simple baseline for product poster generation. This public rel
 
 ## Showcase
 
-The examples below are deliberately difficult: dense multi-line Chinese, long copy, mixed digits, English punctuation, and complex product silhouettes. All displayed target lines were exact OCR matches (`mean NED = 1.0`). Inputs, masks, full prompts, layout coordinates, fixed settings, and checksums are included in the [reproducible showcase](examples/showcase/README.md).
+### Complex-tier highlight
+
+![Complex laminator poster with ten text blocks](assets/showcase/thumbs/complex_laminator.jpg)
+
+This case comes from the dedicated complex tier: **10 text blocks, 74 characters**, mixing Chinese, Latin letters, digits, parentheses, and `+`. Every requested text block is visible in the reference result. Its input, mask, full prompt, layout coordinates, 768×768 settings, and checksums are included in the [reproducible showcase](examples/showcase/README.md).
+
+### Additional exact-match cases
+
+The examples below cover dense multi-line Chinese, long copy, mixed digits, English punctuation, and complex product silhouettes. All displayed target lines were exact OCR matches (`mean NED = 1.0`).
 
 | 6 exact lines | 5 exact lines | 4 long lines |
 |:---:|:---:|:---:|

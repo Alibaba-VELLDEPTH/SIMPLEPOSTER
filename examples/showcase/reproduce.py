@@ -57,6 +57,7 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="simpleposter-showcase-") as temp_dir:
         temp = Path(temp_dir)
         for case in cases:
+            case_settings = {**settings, **case.get("settings", {})}
             for key in ("input", "mask", "reference_output"):
                 path = ROOT / case[key]
                 actual = sha256(path)
@@ -79,12 +80,12 @@ def main() -> None:
                 "--vae", str(args.vae),
                 "--qwen-dir", str(args.qwen_dir),
                 "--output", str(args.output_dir / f"{case['id']}.png"),
-                "--width", str(settings["width"]),
-                "--height", str(settings["height"]),
-                "--steps", str(settings["steps"]),
-                "--guidance-scale", str(settings["guidance_scale"]),
-                "--guidance", str(settings["guidance"]),
-                "--seed", str(settings["seed"]),
+                "--width", str(case_settings["width"]),
+                "--height", str(case_settings["height"]),
+                "--steps", str(case_settings["steps"]),
+                "--guidance-scale", str(case_settings["guidance_scale"]),
+                "--guidance", str(case_settings["guidance"]),
+                "--seed", str(case_settings["seed"]),
             ]
             print(" ".join(json.dumps(part, ensure_ascii=False) for part in command))
             if not args.verify_only:
