@@ -23,27 +23,25 @@ This repository provides a lightweight, local single-image inference entry point
 
 SIMPLEPOSTER is a simple baseline for product poster generation. This public release contains only the local inference entry point and its Python dependencies. Training, data processing, and evaluation code are not included.
 
+## Method
+
+![Architectural comparison and the SIMPLEPOSTER framework](assets/paper/framework.png)
+
+*Architectural comparison between prior inpainting-based poster generation approaches and SIMPLEPOSTER.*
+
 ## Showcase
 
-### Complex-tier highlight
-
-![Complex laminator poster with ten text blocks](assets/showcase/thumbs/complex_laminator.jpg)
-
-This case comes from the dedicated complex tier: **10 text blocks, 74 characters**, mixing Chinese, Latin letters, digits, parentheses, and `+`. Every requested text block is visible in the reference result. Its input, mask, full prompt, layout coordinates, 768×768 settings, and checksums are included in the [reproducible showcase](examples/showcase/README.md).
-
-### Additional exact-match cases
-
-The examples below cover dense multi-line Chinese, long copy, mixed digits, English punctuation, and complex product silhouettes. All displayed target lines were exact OCR matches (`mean NED = 1.0`).
+The first five cases below are exact OCR matches (`mean NED = 1.0`). The final case comes from the dedicated complex tier and was checked target by target: all 10 requested text blocks are visible. Inputs, masks, prompts, layout coordinates, settings, and checksums are included in the [reproducible showcase](examples/showcase/README.md).
 
 | 6 exact lines | 5 exact lines | 4 long lines |
 |:---:|:---:|:---:|
 | ![Fishing net poster](assets/showcase/thumbs/net.jpg) | ![Ventilation product poster](assets/showcase/thumbs/vent.jpg) | ![Comb rack poster](assets/showcase/thumbs/comb.jpg) |
 | Dense repeated Chinese copy | Long top and bottom copy | Long material-description copy |
 
-| Digits + Chinese | English + punctuation | Complex furniture subject |
+| Digits + Chinese | English + punctuation | Complex tier |
 |:---:|:---:|:---:|
-| ![Phone case poster](assets/showcase/thumbs/phonecase.jpg) | ![Knitwear poster](assets/showcase/thumbs/knitwear.jpg) | ![Sofa poster](assets/showcase/thumbs/sofa.jpg) |
-| `2024` mixed with Chinese | `OOTD.` and `/` mixed with Chinese | Three exact lines with a detailed scene |
+| ![Phone case poster](assets/showcase/thumbs/phonecase.jpg) | ![Knitwear poster](assets/showcase/thumbs/knitwear.jpg) | ![Complex laminator poster](assets/showcase/thumbs/complex_laminator.jpg) |
+| `2024` mixed with Chinese | `OOTD.` and `/` mixed with Chinese | 10 blocks, 74 characters, mixed symbols |
 
 ## Environment
 
