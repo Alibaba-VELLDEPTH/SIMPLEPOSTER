@@ -23,6 +23,20 @@ This repository provides a lightweight, local single-image inference entry point
 
 SIMPLEPOSTER is a simple baseline for product poster generation. This public release contains only the local inference entry point and its Python dependencies. Training, data processing, and evaluation code are not included.
 
+## Showcase
+
+The examples below are deliberately difficult: dense multi-line Chinese, long copy, mixed digits, English punctuation, and complex product silhouettes. All displayed target lines were exact OCR matches (`mean NED = 1.0`). Inputs, masks, full prompts, layout coordinates, fixed settings, and checksums are included in the [reproducible showcase](examples/showcase/README.md).
+
+| 6 exact lines | 5 exact lines | 4 long lines |
+|:---:|:---:|:---:|
+| ![Fishing net poster](assets/showcase/net.png) | ![Ventilation product poster](assets/showcase/vent.png) | ![Comb rack poster](assets/showcase/comb.png) |
+| Dense repeated Chinese copy | Long top and bottom copy | Long material-description copy |
+
+| Digits + Chinese | English + punctuation | Complex furniture subject |
+|:---:|:---:|:---:|
+| ![Phone case poster](assets/showcase/phonecase.png) | ![Knitwear poster](assets/showcase/knitwear.png) | ![Sofa poster](assets/showcase/sofa.png) |
+| `2024` mixed with Chinese | `OOTD.` and `/` mixed with Chinese | Three exact lines with a detailed scene |
+
 ## Environment
 
 - Linux with a CUDA GPU (48 GB or more VRAM recommended)
