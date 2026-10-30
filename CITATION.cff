@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use SIMPLEPOSTER, please cite the paper below."
+title: "SIMPLEPOSTER: A Simple Baseline for Product Poster Generation"
+type: software
+authors:
+  - family-names: Cui
+    given-names: Benlei
+  - family-names: Zeng
+    given-names: Fangao
+  - family-names: Jiang
+    given-names: Weitao
+  - family-names: Zhai
+    given-names: Yuwen
+  - family-names: Hong
+    given-names: Haiwen
+  - family-names: Huang
+    given-names: Longtao
+  - family-names: Xue
+    given-names: Hui
+  - family-names: Shang
+    given-names: Wenxiang
+  - family-names: Huang
+    given-names: Pipei
+repository-code: "https://github.com/Alibaba-VELLDEPTH/SIMPLEPOSTER"
+url: "https://arxiv.org/abs/2605.08784"
+date-released: 2026-05-09
+preferred-citation:
+  type: article
+  title: "SIMPLEPOSTER: A Simple Baseline for Product Poster Generation"
+  authors:
+    - family-names: Cui
+      given-names: Benlei
+    - family-names: Zeng
+      given-names: Fangao
+    - family-names: Jiang
+      given-names: Weitao
+    - family-names: Zhai
+      given-names: Yuwen
+    - family-names: Hong
+      given-names: Haiwen
+    - family-names: Huang
+      given-names: Longtao
+    - family-names: Xue
+      given-names: Hui
+    - family-names: Shang
+      given-names: Wenxiang
+    - family-names: Huang
+      given-names: Pipei
+  year: 2026
+  journal: "arXiv preprint arXiv:2605.08784"

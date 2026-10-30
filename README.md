@@ -1,57 +1,102 @@
-# SIMPLEPOSTER: A Simple Baseline for Product Poster Generation
+<div align="center">
 
-Official implementation of the **CVPR 2026** paper:
+# SIMPLEPOSTER
 
-> **SIMPLEPOSTER: A Simple Baseline for Product Poster Generation**  
-> [[Paper](https://arxiv.org/pdf/2605.08784)]
+### A Simple Baseline for Product Poster Generation
 
+[![Paper](https://img.shields.io/badge/arXiv-2605.08784-b31b1b.svg)](https://arxiv.org/abs/2605.08784)
+[![GitHub](https://img.shields.io/badge/GitHub-Official_Code-181717?logo=github)](https://github.com/Alibaba-VELLDEPTH/SIMPLEPOSTER)
+[![Model](https://img.shields.io/badge/🤗%20Model-Flux--SimplePoster-yellow)](https://huggingface.co/Alibaba-VELLDEPTH/Flux-SimplePoster)
+[![Conference](https://img.shields.io/badge/CVPR-2026-4b44ce)](https://arxiv.org/abs/2605.08784)
 
-## 🔥 News
+This repository provides a lightweight, local single-image inference entry point for SIMPLEPOSTER.
 
-- **[Coming Soon]** Official code release for **training**, **inference**, **data processing**, and **evaluation**.
-- **Inference code** will be released first, and is expected to be open-sourced **before June 1, 2026**.
-- The remaining components, including **training code**, **data pipeline**, and **evaluation toolkit**, will be released in subsequent updates.
+</div>
 
----
+## Links
 
-## 📌 Introduction
+- Paper: [SIMPLEPOSTER: A Simple Baseline for Product Poster Generation](https://arxiv.org/abs/2605.08784)
+- Code: [Alibaba-VELLDEPTH/SIMPLEPOSTER](https://github.com/Alibaba-VELLDEPTH/SIMPLEPOSTER)
+- Checkpoint: [Alibaba-VELLDEPTH/Flux-SimplePoster](https://huggingface.co/Alibaba-VELLDEPTH/Flux-SimplePoster)
 
-**SIMPLEPOSTER** is a simple yet effective baseline for **product poster generation**.  
-This repository contains the official implementation of our **CVPR 2026** paper.
+## Overview
 
-We aim to provide a clean, reproducible, and extensible framework for the research community working on multimodal content understanding and generation, especially for product-centric visual design tasks.
+SIMPLEPOSTER is a simple baseline for product poster generation. This public release contains only the local inference entry point and its Python dependencies. Training, data processing, and evaluation code are not included.
 
----
+## Environment
 
-## 🗓️ Release Plan
+- Linux with a CUDA GPU (48 GB or more VRAM recommended)
+- Python 3.10
+- CUDA 12.x
 
-We will open-source this project in stages:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+bash install_local.sh
+```
 
-- [x] Paper
-- [ ] Inference code (**expected before 2026-06-01**)
-- [ ] Training code
-- [ ] Data processing pipeline
-- [ ] Evaluation code
-- [ ] Pretrained checkpoints
-- [ ] Documentation and usage examples
+The installer uses the public Python package index only. The model runtime imported under `aigc_train.models` must also be available on `PYTHONPATH`; it is not downloaded by the installer. The inference program reads model assets exclusively from the local paths supplied on the command line.
 
----
+## Model preparation
 
-## ✅ TODO
+Prepare the following local model assets:
 
-- [ ] Release inference code
-- [ ] Release pretrained checkpoints
-- [ ] Release training pipeline
-- [ ] Release data processing scripts
-- [ ] Release evaluation scripts
-- [ ] Add usage instructions
-- [ ] Add reproducibility details
+1. SIMPLEPOSTER DiT checkpoint `dit.pth`
+2. FLUX.1-dev VAE `ae.safetensors`
+3. A complete `Qwen2.5-VL-7B-Instruct/` directory
 
----
+Download the SIMPLEPOSTER checkpoint from Hugging Face:
 
-## 📖 Paper
+```bash
+hf download Alibaba-VELLDEPTH/Flux-SimplePoster dit.pth --local-dir models
+```
 
-If you find this project useful, please consider citing our paper:
+Obtain the FLUX.1-dev and Qwen2.5-VL assets from their official publishers and follow their respective licenses. Inference does not make network requests; all assets are loaded from local paths.
+
+## Quick inference
+
+For an RGBA input, the alpha channel is converted into an inpainting mask: transparent regions are generated and opaque product regions are preserved.
+
+```bash
+python infer.py \
+  --image inputs/product.png \
+  --prompt '一只粉色玩具喷水枪，蓝色夏日水面背景。' \
+  --checkpoint models/dit.pth \
+  --vae models/ae.safetensors \
+  --qwen-dir models/Qwen2.5-VL-7B-Instruct \
+  --output outputs/poster.png
+```
+
+For an RGB input, provide a mask explicitly. White pixels mark regions to generate.
+
+```bash
+python infer.py \
+  --image inputs/product.jpg \
+  --mask inputs/mask.png \
+  --prompt '一只粉色玩具喷水枪，蓝色夏日水面背景。' \
+  --checkpoint models/dit.pth \
+  --vae models/ae.safetensors \
+  --qwen-dir models/Qwen2.5-VL-7B-Instruct \
+  --output outputs/poster.png
+```
+
+## Text layout control
+
+Use `--ocr-json inputs/ocr.json` to specify text and spatial positions. The file may contain the OCR object directly or wrap it in an `ocr_result` field:
+
+```json
+{
+  "texts": ["夏日浓情戏水"],
+  "boxes": [[24, 96, 594, 25, 607, 162, 51, 227]],
+  "info": {"width": 800, "height": 800}
+}
+```
+
+The corresponding text in the prompt must use Chinese quotation marks, for example: `顶部写“夏日浓情戏水”。`
+
+Default inference settings are `1024×1024`, `50` steps, `guidance_scale=4.5`, `guidance=30`, and `seed=100`.
+
+## Citation
 
 ```bibtex
 @article{simpleposter2026,
@@ -60,3 +105,8 @@ If you find this project useful, please consider citing our paper:
   journal={arXiv preprint arXiv:2605.08784},
   year={2026}
 }
+```
+
+## License
+
+The checkpoint and all dependent models remain subject to their respective licenses and release terms.
